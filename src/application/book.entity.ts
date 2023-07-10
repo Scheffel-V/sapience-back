@@ -31,10 +31,19 @@
     #[ORM\Column(length: 255)]
     private ?string $visibility = null;
  */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Author } from './author.entity';
+import { Paragraph } from './paragraph.entity';
+import { Quote } from './quote.entity';
 
 @Entity()
-export default class Book {
+export class Book {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -44,14 +53,29 @@ export default class Book {
   @Column()
   chaptersAmount: number;
 
+  @Column('simple-array')
+  chaptersToRemember: string[];
+
   @Column()
   priority: string;
 
   @Column()
   lastReviewDate: Date;
 
-  @ManyToOne()
+  // TODO: reviewHistory field
+
+  @ManyToOne(() => Author, (author) => author.books)
   author: Author;
 
+  @OneToMany(() => Paragraph, (paragraph) => paragraph.book)
+  paragraphs: Paragraph[];
 
+  @OneToMany(() => Quote, (quote) => quote.book)
+  quotes: Quote[];
+
+  @Column()
+  votes: number;
+
+  @Column()
+  visibility: string;
 }

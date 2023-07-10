@@ -27,7 +27,7 @@
     private Collection $quotes;
 */
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import Book from './book.entity';
+import { Book } from './book.entity';
 import { Quote } from './quote.entity';
 import { Paragraph } from './paragraph.entity';
 @Entity()
