@@ -40,18 +40,18 @@ export class Paragraph {
   @Column()
   title: string;
 
-  @Column()
+  @Column('text')
   text: string;
 
-  @Column()
+  @Column({ nullable: true })
   priority: string;
 
-  @Column()
+  @Column('timestamp', { nullable: true })
   lastReviewDate: Date;
 
   //TODO: reviewHistory field
 
-  @Column()
+  @Column('int', { nullable: true })
   bookChapter: number;
 
   @Column()
@@ -63,6 +63,6 @@ export class Paragraph {
   @ManyToOne(() => Author, (author) => author.paragraphs)
   author: Author;
 
-  @Column()
+  @Column('int', { nullable: true })
   votes: number;
 }
