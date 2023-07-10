@@ -38,19 +38,19 @@ export class Author {
   @Column()
   name: string;
 
-  @Column()
+  @Column('timestamp', { nullable: true })
   birthdate: Date;
 
-  @Column()
+  @Column({ nullable: true })
   biography: string;
 
-  @Column()
+  @Column({ nullable: true })
   priority: string;
 
   @Column()
   visibility: string;
 
-  @Column()
+  @Column('int', { nullable: true })
   votes: number;
 
   @OneToMany(() => Book, (book) => book.author)
