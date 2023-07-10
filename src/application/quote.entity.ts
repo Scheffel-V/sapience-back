@@ -40,15 +40,15 @@ export class Quote {
   @Column()
   text: string;
 
-  @Column()
+  @Column({ nullable: true })
   priority: string;
 
-  @Column()
+  @Column('timestamp', { nullable: true })
   lastReviewDate: Date;
 
   //TODO: reviewHistory field
 
-  @Column()
+  @Column('int', { nullable: true })
   bookChapter: number;
 
   @ManyToOne(() => Book, (book) => book.quotes)
@@ -60,6 +60,6 @@ export class Quote {
   @Column()
   visibility: string;
 
-  @Column()
+  @Column({ nullable: true })
   votes: number;
 }
