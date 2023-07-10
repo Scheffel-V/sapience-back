@@ -50,16 +50,16 @@ export class Book {
   @Column()
   name: string;
 
-  @Column()
+  @Column('int')
   chaptersAmount: number;
 
-  @Column('simple-array')
+  @Column('simple-array', { nullable: true })
   chaptersToRemember: string[];
 
-  @Column()
+  @Column({ nullable: true })
   priority: string;
 
-  @Column()
+  @Column('timestamp', { nullable: true })
   lastReviewDate: Date;
 
   // TODO: reviewHistory field
@@ -73,7 +73,7 @@ export class Book {
   @OneToMany(() => Quote, (quote) => quote.book)
   quotes: Quote[];
 
-  @Column()
+  @Column('int', { nullable: true })
   votes: number;
 
   @Column()
